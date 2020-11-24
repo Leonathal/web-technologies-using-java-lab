@@ -1,5 +1,6 @@
 package com.dicualinleon.MusicShop;
 
+import com.dicualinleon.MusicShop.domain.products.Guitar;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,6 +9,13 @@ public class MusicShopApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MusicShopApplication.class, args);
+
+		Guitar guitar1 = Guitar.builder()
+				.name("Gibson SGX 1")
+				.price(250)
+				.description("Les Paul Gibson")
+				.type(Guitar.Types.ACOUSTIC)
+				.build();
 	}
 
 }
