@@ -22,12 +22,12 @@ public class BassDaoRepository implements DaoRepository<Bass> {
 
     @Override
     public boolean delete(Bass object) {
-        Optional<Long> producerKey = bassList.keySet()
+        Optional<Long> bassKey = bassList.keySet()
                 .stream()
                 .filter(key -> bassList.get(key).equals(object))
                 .findAny();
-        if(producerKey.isPresent()) {
-            bassList.remove(producerKey, object);
+        if(bassKey.isPresent()) {
+            bassList.remove(bassKey, object);
             return true;
         }
         return false;

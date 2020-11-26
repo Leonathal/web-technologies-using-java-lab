@@ -22,12 +22,12 @@ public class PickDaoRepository implements DaoRepository<Pick> {
 
     @Override
     public boolean delete(Pick object) {
-        Optional<Long> producerKey = pickList.keySet()
+        Optional<Long> pickKey = pickList.keySet()
                 .stream()
                 .filter(key -> pickList.get(key).equals(object))
                 .findAny();
-        if(producerKey.isPresent()) {
-            pickList.remove(producerKey, object);
+        if(pickKey.isPresent()) {
+            pickList.remove(pickKey, object);
             return true;
         }
         return false;

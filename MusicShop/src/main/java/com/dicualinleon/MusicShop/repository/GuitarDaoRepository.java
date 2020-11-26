@@ -22,12 +22,12 @@ public class GuitarDaoRepository implements DaoRepository<Guitar> {
 
     @Override
     public boolean delete(Guitar object) {
-        Optional<Long> producerKey = guitarList.keySet()
+        Optional<Long> guitarKey = guitarList.keySet()
                 .stream()
                 .filter(key -> guitarList.get(key).equals(object))
                 .findAny();
-        if(producerKey.isPresent()) {
-            guitarList.remove(producerKey, object);
+        if(guitarKey.isPresent()) {
+            guitarList.remove(guitarKey, object);
             return true;
         }
         return false;

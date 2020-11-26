@@ -22,12 +22,12 @@ public class StringsDaoRepository implements DaoRepository<Strings> {
 
     @Override
     public boolean delete(Strings object) {
-        Optional<Long> producerKey = stringsList.keySet()
+        Optional<Long> stringsKey = stringsList.keySet()
                 .stream()
                 .filter(key -> stringsList.get(key).equals(object))
                 .findAny();
-        if(producerKey.isPresent()) {
-            stringsList.remove(producerKey, object);
+        if(stringsKey.isPresent()) {
+            stringsList.remove(stringsKey, object);
             return true;
         }
         return false;
