@@ -1,12 +1,14 @@
 package com.dicualinleon.MusicShop.repository;
 
 import com.dicualinleon.MusicShop.domain.Account;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class AccountDaoRepository implements DaoRepository<Account> {
 
     private Long id = 0L;
