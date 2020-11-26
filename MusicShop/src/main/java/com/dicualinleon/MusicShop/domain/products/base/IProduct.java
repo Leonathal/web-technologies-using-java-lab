@@ -1,6 +1,7 @@
 package com.dicualinleon.MusicShop.domain.products.base;
 
 import com.dicualinleon.MusicShop.domain.Producer;
+import com.dicualinleon.MusicShop.utils.ProductTypes;
 
 public interface IProduct {
 

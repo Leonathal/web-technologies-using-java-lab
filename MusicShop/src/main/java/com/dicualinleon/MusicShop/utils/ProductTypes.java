@@ -1,4 +1,4 @@
-package com.dicualinleon.MusicShop.domain.products.base;
+package com.dicualinleon.MusicShop.utils;
 
 public enum ProductTypes {
     GUITAR,

@@ -1,7 +1,7 @@
 package com.dicualinleon.MusicShop.domain.products;
 
 import com.dicualinleon.MusicShop.domain.products.base.Product;
-import com.dicualinleon.MusicShop.domain.products.base.ProductTypes;
+import com.dicualinleon.MusicShop.utils.ProductTypes;
 import com.dicualinleon.MusicShop.utils.GuitarTypes;
 
 public class Guitar extends Product {

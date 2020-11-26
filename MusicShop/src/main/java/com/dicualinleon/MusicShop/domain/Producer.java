@@ -1,6 +1,6 @@
 package com.dicualinleon.MusicShop.domain;
 
-import com.dicualinleon.MusicShop.domain.products.base.ProductTypes;
+import com.dicualinleon.MusicShop.utils.ProductTypes;
 
 import java.util.List;
 
