@@ -1,9 +1,9 @@
 package com.dicualinleon.MusicShop.domain.products;
 
-import com.dicualinleon.MusicShop.domain.products.base.AbsProduct;
+import com.dicualinleon.MusicShop.domain.products.base.Product;
 import com.dicualinleon.MusicShop.domain.products.base.ProductTypes;
 
-public class Piano extends AbsProduct {
+public class Piano extends Product {
 
     //region Constructors
     private Piano(PianoBuilder builder) {
@@ -21,7 +21,7 @@ public class Piano extends AbsProduct {
     }
 
     protected static abstract class GenericPianoBuilder<T extends GenericPianoBuilder<T>>
-        extends AbsProduct.GenericProductBuilder<T> {
+        extends Product.GenericProductBuilder<T> {
 
         protected GenericPianoBuilder() {
             super(ProductTypes.PIANO);

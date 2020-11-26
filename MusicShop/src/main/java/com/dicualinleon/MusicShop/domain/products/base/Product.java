@@ -2,7 +2,7 @@ package com.dicualinleon.MusicShop.domain.products.base;
 
 import com.dicualinleon.MusicShop.domain.Producer;
 
-abstract public class AbsProduct
+abstract public class Product
     implements IProduct {
 
     //region Data Members
@@ -14,7 +14,7 @@ abstract public class AbsProduct
     //endregion
 
     //region Constructors
-    protected AbsProduct(GenericProductBuilder builder) {
+    protected Product(GenericProductBuilder builder) {
         this.productTypes = builder.productTypes;
         this.name = builder.name;
         this.price = builder.price;
@@ -114,6 +114,6 @@ abstract public class AbsProduct
 
         // impossible to implement since the class is abstract
         // this will be required in the Actual Builder of a class that can be instantiated
-        public abstract AbsProduct build();
+        public abstract Product build();
     }
 }

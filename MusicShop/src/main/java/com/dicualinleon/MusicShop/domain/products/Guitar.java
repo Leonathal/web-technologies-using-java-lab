@@ -1,18 +1,13 @@
 package com.dicualinleon.MusicShop.domain.products;
 
-import com.dicualinleon.MusicShop.domain.products.base.AbsProduct;
+import com.dicualinleon.MusicShop.domain.products.base.Product;
 import com.dicualinleon.MusicShop.domain.products.base.ProductTypes;
+import com.dicualinleon.MusicShop.utils.GuitarTypes;
 
-public class Guitar extends AbsProduct {
+public class Guitar extends Product {
 
     //region Data members
-    public enum Types {
-        CLASSIC,
-        ACOUSTIC,
-        ELECTRIC
-    }
-
-    final private Types types;
+    final private GuitarTypes types;
     //endregion
 
     //region Constructor
@@ -36,15 +31,15 @@ public class Guitar extends AbsProduct {
     }
 
     protected static abstract class GenericGuitarBuilder<T extends GenericGuitarBuilder<T>>
-        extends AbsProduct.GenericProductBuilder<T> {
+        extends Product.GenericProductBuilder<T> {
 
-        protected Types types;
+        protected GuitarTypes types;
 
         protected GenericGuitarBuilder() {
             super(ProductTypes.GUITAR);
         }
 
-        public T type(Types types) {
+        public T type(GuitarTypes types) {
             this.types = types;
             return this.self();
         }

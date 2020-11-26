@@ -1,9 +1,9 @@
 package com.dicualinleon.MusicShop.domain.products;
 
-import com.dicualinleon.MusicShop.domain.products.base.AbsProduct;
+import com.dicualinleon.MusicShop.domain.products.base.Product;
 import com.dicualinleon.MusicShop.domain.products.base.ProductTypes;
 
-public class Pick extends AbsProduct {
+public class Pick extends Product {
 
     private Pick(PickBuilder builder) {
         super(builder);
@@ -18,7 +18,7 @@ public class Pick extends AbsProduct {
     }
 
     protected static abstract class GenericPickBuilder<T extends GenericPickBuilder<T>>
-        extends AbsProduct.GenericProductBuilder<T> {
+        extends Product.GenericProductBuilder<T> {
 
         protected GenericPickBuilder() {
             super(ProductTypes.PICK);

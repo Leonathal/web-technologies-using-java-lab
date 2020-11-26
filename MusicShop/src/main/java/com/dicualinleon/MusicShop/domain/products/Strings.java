@@ -1,9 +1,9 @@
 package com.dicualinleon.MusicShop.domain.products;
 
-import com.dicualinleon.MusicShop.domain.products.base.AbsProduct;
+import com.dicualinleon.MusicShop.domain.products.base.Product;
 import com.dicualinleon.MusicShop.domain.products.base.ProductTypes;
 
-public class Strings extends AbsProduct {
+public class Strings extends Product {
 
     private Strings(StringsBuilder builder) {
         super(builder);
@@ -18,7 +18,7 @@ public class Strings extends AbsProduct {
     }
 
     protected static abstract class GenericStringsBuilder<T extends GenericStringsBuilder<T>>
-        extends AbsProduct.GenericProductBuilder<T> {
+        extends Product.GenericProductBuilder<T> {
 
         protected GenericStringsBuilder() {
             super(ProductTypes.STRINGS);

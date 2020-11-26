@@ -1,6 +1,7 @@
 package com.dicualinleon.MusicShop;
 
 import com.dicualinleon.MusicShop.domain.products.Guitar;
+import com.dicualinleon.MusicShop.utils.GuitarTypes;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -14,7 +15,7 @@ public class MusicShopApplication {
 				.name("Gibson SGX 1")
 				.price(250)
 				.description("Les Paul Gibson")
-				.type(Guitar.Types.ACOUSTIC)
+				.type(GuitarTypes.ACOUSTIC)
 				.build();
 	}
 
