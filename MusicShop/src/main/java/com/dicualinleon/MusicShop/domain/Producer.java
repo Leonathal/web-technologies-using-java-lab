@@ -7,14 +7,14 @@ import java.util.List;
 public class Producer {
 
     //region Data members
-    private String name;
-    private String description;
+    final private String name;
+    final private String description;
     //endregion
 
     //region Constructors
-    Producer(String name, String description){
-        this.name = name;
-        this.description = description;
+    private Producer(ProducerBuilder builder) {
+        this.name = builder.name;
+        this.description = builder.description;
     }
     //endregion
 
@@ -33,4 +33,23 @@ public class Producer {
         return null;
     }
     //endregion
+
+    public class ProducerBuilder {
+        private String name;
+        private String description;
+
+        public ProducerBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public ProducerBuilder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Producer build() {
+            return new Producer(this);
+        }
+    }
 }
