@@ -1,6 +1,7 @@
-package com.dicualinleon.MusicShop.repository;
+package com.dicualinleon.MusicShop.repository.products;
 
 import com.dicualinleon.MusicShop.domain.products.Pick;
+import com.dicualinleon.MusicShop.repository.DaoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
