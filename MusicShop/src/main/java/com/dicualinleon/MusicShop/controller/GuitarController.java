@@ -9,6 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+
 @RestController
 @RequestMapping("/guitar")
 public class GuitarController {
@@ -22,12 +24,18 @@ public class GuitarController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<GuitarDto> create(@RequestBody GuitarDto guitarDto) {
         GuitarDto savedGuitarDto = guitarService.save(guitarDto);
-        return new ResponseEntity<>(savedGuitarDto, null == savedGuitarDto ? HttpStatus.EXPECTATION_FAILED : HttpStatus.CREATED);
+        //return new ResponseEntity<>(savedGuitarDto, null == savedGuitarDto ? HttpStatus.EXPECTATION_FAILED : HttpStatus.CREATED);
+        return ResponseEntity
+                .created(URI.create("/guitar/" + savedGuitarDto.getName()))
+                .body(savedGuitarDto);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<GuitarDto> get(@PathVariable("id") Long id) {
         GuitarDto guitarDto = guitarService.get(id);
-        return new ResponseEntity<>(guitarDto, null == guitarDto ? HttpStatus.NOT_FOUND : HttpStatus.OK);
+        //return new ResponseEntity<>(guitarDto, null == guitarDto ? HttpStatus.NOT_FOUND : HttpStatus.OK);
+        return ResponseEntity
+                .ok()
+                .body(guitarDto);
     }
 }

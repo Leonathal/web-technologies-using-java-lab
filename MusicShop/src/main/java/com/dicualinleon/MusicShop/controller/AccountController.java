@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.net.URI;
 
 @RestController
 @RequestMapping("/account")
@@ -25,7 +26,7 @@ public class AccountController {
         AccountDto savedAccountDto = accountService.save(accountDto);
         //return new ResponseEntity<>(savedAccountDto, null == savedAccountDto ? HttpStatus.EXPECTATION_FAILED : HttpStatus.CREATED);
         return ResponseEntity
-                .ok()
+                .created(URI.create("/account/" + savedAccountDto.getUsername()))
                 .body(savedAccountDto);
     }
 
