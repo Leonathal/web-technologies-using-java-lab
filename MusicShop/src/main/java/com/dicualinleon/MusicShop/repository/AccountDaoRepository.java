@@ -45,7 +45,7 @@ public class AccountDaoRepository {
             return preparedStatement;
         };
         GeneratedKeyHolder generatedKeyHolder = new GeneratedKeyHolder();
-        jdbcTemplate.update(preparedStatementCreator, generatedKeyHolder);
+        int numberOfAccountsCreated = jdbcTemplate.update(preparedStatementCreator, generatedKeyHolder);
 
         Account createdAccount = Account.builder()
                 .id(generatedKeyHolder.getKey().longValue())
