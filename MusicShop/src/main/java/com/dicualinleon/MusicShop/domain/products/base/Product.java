@@ -12,6 +12,7 @@ abstract public class Product
     final private String description;
     final private ProductTypes productTypes;
     final private Producer producer;
+    final private int quantity;
     //endregion
 
     //region Constructors
@@ -21,6 +22,7 @@ abstract public class Product
         this.price = builder.price;
         this.description = builder.description;
         this.producer = builder.producer;
+        this.quantity = builder.quantity;
     }
     //endregion
 
@@ -49,6 +51,12 @@ abstract public class Product
     public Producer getProducer() {
         return producer;
     }
+
+    @Override
+    public int getQuantity() {
+        return quantity;
+    }
+
     //endregion
 
     // Impossible to offer since we can not instantiate this type of class
@@ -71,6 +79,7 @@ abstract public class Product
         private String description;
         final private ProductTypes productTypes;
         private Producer producer;
+        private int quantity;
         //endregion
 
         //region Constructors
@@ -99,6 +108,11 @@ abstract public class Product
 
         public T producer(Producer producer) {
             this.producer = producer;
+            return this.self();
+        }
+
+        public T quantity(int quantity) {
+            this.quantity = quantity;
             return this.self();
         }
         //endregion

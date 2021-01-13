@@ -34,4 +34,6 @@ public interface IProduct {
      * @return the producer of this item
      */
     Producer getProducer();
+
+    int getQuantity();
 }

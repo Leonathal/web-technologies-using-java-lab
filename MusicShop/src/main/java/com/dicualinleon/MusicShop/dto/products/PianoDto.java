@@ -12,7 +12,8 @@ public class PianoDto extends ProductDto {
     public PianoDto(String name,
                     double price,
                     String description,
-                    ProducerDto producer) {
-        super(name, price, description, producer, ProductTypes.PIANO);
+                    ProducerDto producer,
+                    int quantity) {
+        super(name, price, description, producer, ProductTypes.PIANO, quantity);
     }
 }

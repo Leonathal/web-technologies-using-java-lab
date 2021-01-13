@@ -12,7 +12,8 @@ public class StringsDto extends ProductDto {
     public StringsDto(String name,
                       double price,
                       String description,
-                      ProducerDto producer) {
-        super(name, price, description, producer, ProductTypes.STRINGS);
+                      ProducerDto producer,
+                      int quantity) {
+        super(name, price, description, producer, ProductTypes.STRINGS, quantity);
     }
 }

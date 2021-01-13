@@ -14,4 +14,5 @@ public abstract class ProductDto {
     final private String description;
     final private ProducerDto producer;
     final private ProductTypes type;
+    final private int quantity;
 }

@@ -16,8 +16,9 @@ public class GuitarDto extends ProductDto {
                      double price,
                      String description,
                      ProducerDto producer,
-                     GuitarTypes guitarType) {
-        super(name, price, description, producer, ProductTypes.GUITAR);
+                     GuitarTypes guitarType,
+                     int quantity) {
+        super(name, price, description, producer, ProductTypes.GUITAR, quantity);
         this.guitarType = guitarType;
     }
 }
