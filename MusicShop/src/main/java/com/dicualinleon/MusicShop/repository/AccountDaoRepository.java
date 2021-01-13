@@ -1,45 +1,53 @@
 package com.dicualinleon.MusicShop.repository;
 
 import com.dicualinleon.MusicShop.domain.Account;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class AccountDaoRepository implements DaoRepository<Account> {
+public class AccountDaoRepository {
 
-    private Long id = 0L;
-    private final HashMap<Long, Account> accountList = new HashMap<>();
+    private JdbcTemplate jdbcTemplate;
 
-    @Override
-    public Account save(Account object) {
-        accountList.put(id++, object);
-        return object;
+    public AccountDaoRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
-    @Override
-    public boolean delete(Account object) {
-        Optional<Long> accountKey = accountList.keySet()
-                .stream()
-                .filter(key -> accountList.get(key).equals(object))
-                .findAny();
-        if(accountKey.isPresent()) {
-            accountList.remove(accountKey, object);
-            return true;
+    public Account create(Account account) {
+        String sql = "INSERT INTO account VALUES (?, ?, ?, ?)";
+        int retCode = jdbcTemplate.update(sql, null, account.getUsername(), account.getPassword(), account.getEmail());
+
+        Account createdAccount = Account.builder()
+                .username(account.getUsername())
+                .password(account.getPassword())
+                .email(account.getEmail())
+                .build();
+
+        return createdAccount;
+    }
+
+    public Optional<Account> getAccount(Long id) {
+        String sql = "select * from account ac where ac.id = ?";
+
+        RowMapper<Account> mapper = (resultSet, rowNum) -> {
+            return Account.builder()
+                    .id(resultSet.getLong("id"))
+                    .username(resultSet.getString("username"))
+                    .password(resultSet.getString("password"))
+                    .email(resultSet.getString("email"))
+                    .build();
+        };
+
+        List<Account> accounts = jdbcTemplate.query(sql, mapper, id);
+        if(accounts != null && !accounts.isEmpty()) {
+            return Optional.of(accounts.get(0));
         }
-        return false;
-    }
-
-    @Override
-    public Account getOne(Long id) {
-        return accountList.get(id);
-    }
-
-    @Override
-    public List<Account> getAll() {
-        return new ArrayList<>(accountList.values());
+        else {
+            return Optional.empty();
+        }
     }
 }

@@ -15,7 +15,7 @@ public class AccountDto {
     final private String username;
 
     @NotNull(message = "The password field is required.")
-    @Size(min = 6, max = 30)
+    @Size(min = 2, max = 30)
     final private String password;
 
     @NotNull(message = "The email field is required.")

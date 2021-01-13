@@ -26,7 +26,7 @@ public class GuitarController {
         GuitarDto savedGuitarDto = guitarService.save(guitarDto);
         //return new ResponseEntity<>(savedGuitarDto, null == savedGuitarDto ? HttpStatus.EXPECTATION_FAILED : HttpStatus.CREATED);
         return ResponseEntity
-                .created(URI.create("/guitar/" + savedGuitarDto.getName()))
+                .created(null)
                 .body(savedGuitarDto);
     }
 
