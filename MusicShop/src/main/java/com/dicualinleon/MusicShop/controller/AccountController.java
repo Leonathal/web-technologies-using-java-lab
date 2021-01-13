@@ -56,4 +56,20 @@ public class AccountController {
                 .ok()
                 .body(accountDto);
     }
+
+    @GetMapping(value = "/login")
+    public ResponseEntity<AccountDto> get(
+            @RequestParam(name="username") String username,
+            @RequestParam(name="password") String password) {
+        Account account = accountService.get(username, password);
+        if(account == null) {
+            return ResponseEntity
+                    .notFound()
+                    .build();
+        }
+        AccountDto accountDto = accountMapper.toDto(account);
+        return ResponseEntity
+                .ok()
+                .body(accountDto);
+    }
 }

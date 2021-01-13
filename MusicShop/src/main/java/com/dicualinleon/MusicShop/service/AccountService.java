@@ -30,4 +30,16 @@ public class AccountService {
             return null;
         }
     }
+
+    public Account get(String username,
+                       String password) {
+        Optional<Account> accountOptional = accountDaoRepository.getAccount(username, password);
+        if(accountOptional.isPresent()) {
+            return accountOptional.get();
+        }
+        else {
+            // throw new exception
+            return null;
+        }
+    }
 }
