@@ -21,6 +21,7 @@ public class GuitarMapper {
                 .description(guitarDto.getDescription())
                 .producer(producerMapper.toEntity(guitarDto.getProducer()))
                 .guitarType(guitarDto.getGuitarType())
+                .quantity(guitarDto.getQuantity())
                 .build();
     }
 
@@ -31,6 +32,7 @@ public class GuitarMapper {
                 .description(guitar.getDescription())
                 .producer(producerMapper.toDto(guitar.getProducer()))
                 .guitarType(guitar.guitarType())
+                .quantity(guitar.getQuantity())
                 .build();
     }
 }
