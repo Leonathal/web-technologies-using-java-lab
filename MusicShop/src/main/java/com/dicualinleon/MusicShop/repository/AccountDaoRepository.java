@@ -2,10 +2,14 @@ package com.dicualinleon.MusicShop.repository;
 
 import com.dicualinleon.MusicShop.domain.Account;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,14 +36,23 @@ public class AccountDaoRepository {
 
     public Account create(Account account) {
         String sql = "INSERT INTO account VALUES (?, ?, ?, ?)";
-        int retCode = jdbcTemplate.update(sql, null, account.getUsername(), account.getPassword(), account.getEmail());
+        PreparedStatementCreator preparedStatementCreator = (connection) -> {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setObject(1, null);
+            preparedStatement.setObject(2, account.getUsername());
+            preparedStatement.setObject(3, account.getPassword());
+            preparedStatement.setObject(4, account.getEmail());
+            return preparedStatement;
+        };
+        GeneratedKeyHolder generatedKeyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(preparedStatementCreator, generatedKeyHolder);
 
         Account createdAccount = Account.builder()
+                .id(generatedKeyHolder.getKey().longValue())
                 .username(account.getUsername())
                 .password(account.getPassword())
                 .email(account.getEmail())
                 .build();
-
         return createdAccount;
     }
 
