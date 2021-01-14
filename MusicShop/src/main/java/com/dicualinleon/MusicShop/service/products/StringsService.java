@@ -36,6 +36,7 @@ public class StringsService {
                         .name(product.getName())
                         .price(product.getPrice())
                         .description(product.getDescription())
+                        .producer(product.getProducer())
                         .quantity(product.getQuantity())
                         .productId(product.getId())
                         .gauge(strings.getGauge())

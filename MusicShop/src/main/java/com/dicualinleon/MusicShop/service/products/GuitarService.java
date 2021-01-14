@@ -37,6 +37,7 @@ public class GuitarService {
                         .price(product.getPrice())
                         .description(product.getDescription())
                         .quantity(product.getQuantity())
+                        .producer(product.getProducer())
                         .productId(product.getId())
                         .guitarType(guitar.guitarType())
                         .build();
