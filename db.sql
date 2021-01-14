@@ -24,7 +24,7 @@ CREATE TABLE `musicshop`.`product` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL,
   `price` DOUBLE NOT NULL,
-  `description` VARCHAR(100) NOT NULL,
+  `description` VARCHAR(255) NOT NULL,
   `producer` VARCHAR(45) NOT NULL,
   `type` VARCHAR(100) NOT NULL,
   `quantity` INT NOT NULL,

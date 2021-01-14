@@ -12,8 +12,8 @@ public class ProductMapper {
                 productDto.getName(),
                 productDto.getPrice(),
                 productDto.getDescription(),
-                productDto.getType(),
                 productDto.getProducer(),
+                productDto.getType(),
                 productDto.getQuantity());
     }
 

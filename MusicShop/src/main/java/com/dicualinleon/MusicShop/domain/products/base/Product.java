@@ -19,8 +19,8 @@ public class Product
                    String name,
                    double price,
                    String description,
-                   ProductTypes productTypes,
                    String producer,
+                   ProductTypes productTypes,
                    int quantity) {
         this.id = id;
         this.name = name;
