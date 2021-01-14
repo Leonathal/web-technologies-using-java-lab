@@ -18,6 +18,7 @@ import com.dicualinleon.MusicShop.utils.ProductTypes;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,5 +59,21 @@ public class OrderService {
             orderProductDaoRepository.create(createdOrder.getId(), productId);
             productDaoRepository.updateProductQuantity(productId, product.getQuantity() - 1);
         }
+    }
+
+    public List<Product> get(long orderId) {
+        Optional<long[]> productsIdOptional = orderProductDaoRepository.ProductsInOrder(orderId);
+        if(productsIdOptional == null || productsIdOptional.isEmpty())
+            return null;
+        long[] productsId = productsIdOptional.get();
+        List<Product> products = new ArrayList<>();
+        for(int i = 0 ; i < productsId.length ; i++) {
+            Optional<Product> productOptional = productDaoRepository.getProduct(productsId[i]);
+            if(productOptional == null || productOptional.isEmpty())
+                throw new ProductNotFoundException(productsId[i]);
+            Product product = productOptional.get();
+            products.add(product);
+        }
+        return products;
     }
 }
