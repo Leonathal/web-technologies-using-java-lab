@@ -1,6 +1,5 @@
 package com.dicualinleon.MusicShop.dto.products;
 
-import com.dicualinleon.MusicShop.dto.ProducerDto;
 import com.dicualinleon.MusicShop.utils.GuitarTypes;
 import com.dicualinleon.MusicShop.utils.ProductTypes;
 import lombok.Builder;
@@ -15,7 +14,7 @@ public class GuitarDto extends ProductDto {
     public GuitarDto(String name,
                      double price,
                      String description,
-                     ProducerDto producer,
+                     String producer,
                      GuitarTypes guitarType,
                      int quantity) {
         super(name, price, description, producer, ProductTypes.GUITAR, quantity);

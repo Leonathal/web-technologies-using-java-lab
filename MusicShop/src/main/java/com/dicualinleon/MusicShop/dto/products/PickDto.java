@@ -1,6 +1,5 @@
 package com.dicualinleon.MusicShop.dto.products;
 
-import com.dicualinleon.MusicShop.dto.ProducerDto;
 import com.dicualinleon.MusicShop.utils.ProductTypes;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,7 +11,7 @@ public class PickDto extends ProductDto {
     public PickDto(String name,
                    double price,
                    String description,
-                   ProducerDto producer,
+                   String producer,
                    int quantity) {
         super(name, price, description, producer, ProductTypes.PICK, quantity);
     }

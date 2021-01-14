@@ -1,6 +1,5 @@
 package com.dicualinleon.MusicShop.domain.products.base;
 
-import com.dicualinleon.MusicShop.domain.Producer;
 import com.dicualinleon.MusicShop.utils.ProductTypes;
 
 public interface IProduct {
@@ -33,7 +32,7 @@ public interface IProduct {
      * The return is a class of type Producer
      * @return the producer of this item
      */
-    Producer getProducer();
+    String getProducer();
 
     int getQuantity();
 }

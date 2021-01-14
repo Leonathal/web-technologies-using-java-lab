@@ -60,20 +60,20 @@ public class AccountController {
                 .body(createdAccountDto);
     }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<AccountDto> get(
-            @PathVariable("id") Long id) {
-        Account account = accountService.get(id);
-        if(account == null) {
-            return ResponseEntity
-                    .notFound()
-                    .build();
-        }
-        AccountDto accountDto = accountMapper.toDto(account);
-        return ResponseEntity
-                .ok()
-                .body(accountDto);
-    }
+//    @GetMapping(value = "/{id}")
+//    public ResponseEntity<AccountDto> get(
+//            @PathVariable("id") Long id) {
+//        Account account = accountService.get(id);
+//        if(account == null) {
+//            return ResponseEntity
+//                    .notFound()
+//                    .build();
+//        }
+//        AccountDto accountDto = accountMapper.toDto(account);
+//        return ResponseEntity
+//                .ok()
+//                .body(accountDto);
+//    }
 
     @GetMapping(value = "/login")
     public ResponseEntity<AccountDto> login(
@@ -93,7 +93,7 @@ public class AccountController {
     }
 
     @PostMapping(value = "/{id}/add_address")
-    public ResponseEntity<AddressDto> createAddress(
+    public ResponseEntity<AddressDto> addAddress(
             @Valid
             @RequestBody AddressDto addressDto,
             @PathVariable("id") Long accountId

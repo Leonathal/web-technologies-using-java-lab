@@ -1,6 +1,5 @@
 package com.dicualinleon.MusicShop.dto.products;
 
-import com.dicualinleon.MusicShop.dto.ProducerDto;
 import com.dicualinleon.MusicShop.utils.ProductTypes;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,7 +23,7 @@ public abstract class ProductDto {
     final private String description;
 
     @NotNull
-    final private ProducerDto producer;
+    final private String producer;
 
     @NotNull
     final private ProductTypes type;

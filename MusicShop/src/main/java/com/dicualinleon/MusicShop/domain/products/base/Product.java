@@ -1,6 +1,5 @@
 package com.dicualinleon.MusicShop.domain.products.base;
 
-import com.dicualinleon.MusicShop.domain.Producer;
 import com.dicualinleon.MusicShop.utils.ProductTypes;
 
 abstract public class Product
@@ -11,7 +10,7 @@ abstract public class Product
     final private double price;
     final private String description;
     final private ProductTypes productTypes;
-    final private Producer producer;
+    final private String producer;
     final private int quantity;
     //endregion
 
@@ -48,7 +47,7 @@ abstract public class Product
     }
 
     @Override
-    public Producer getProducer() {
+    public String getProducer() {
         return producer;
     }
 
@@ -78,7 +77,7 @@ abstract public class Product
         private double price;
         private String description;
         final private ProductTypes productTypes;
-        private Producer producer;
+        private String producer;
         private int quantity;
         //endregion
 
@@ -106,7 +105,7 @@ abstract public class Product
             return this.self();
         }
 
-        public T producer(Producer producer) {
+        public T producer(String producer) {
             this.producer = producer;
             return this.self();
         }

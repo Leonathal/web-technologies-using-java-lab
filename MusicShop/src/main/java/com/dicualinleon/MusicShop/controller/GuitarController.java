@@ -15,7 +15,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/guitar")
-public class GuitarController {
+public class GuitarController extends ProductControllerBase {
 
     private GuitarService guitarService;
     private ShoppingCart shoppingCart;
@@ -46,15 +46,15 @@ public class GuitarController {
                 .body(guitarDto);
     }
 
-    @PostMapping(value = "/{id}/add_to_cart", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> purchase(
-            @Valid
-            @RequestBody GuitarDto guitarDto) {
+    @PostMapping(value = "/{id}/add_to_cart")
+    public ResponseEntity<String> purchase(@PathVariable("id") Long id) {
 
-        shoppingCart.addProduct(guitarDto);
-
-        return ResponseEntity
-                .ok()
-                .body("Guitar added");
+        GuitarDto guitarDto = guitarService.get(id);
+        if(guitarDto == null) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .build();
+        }
+        return AddToShoppingCart(shoppingCart, guitarDto);
     }
 }
