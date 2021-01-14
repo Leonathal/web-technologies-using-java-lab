@@ -7,6 +7,7 @@ import com.dicualinleon.MusicShop.exception.ProductNotFoundException;
 import com.dicualinleon.MusicShop.repository.products.GuitarDaoRepository;
 import com.dicualinleon.MusicShop.repository.products.ProductDaoRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -22,6 +23,7 @@ public class GuitarService {
         this.productDaoRepository = productDaoRepository;
     }
 
+    @Transactional
     public Guitar get(long id) {
         Optional<Guitar> guitarOptional = guitarDaoRepository.getGuitar(id);
         if(guitarOptional.isPresent()) {

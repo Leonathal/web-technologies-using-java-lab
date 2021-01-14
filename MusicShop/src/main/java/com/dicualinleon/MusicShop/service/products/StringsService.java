@@ -7,6 +7,7 @@ import com.dicualinleon.MusicShop.exception.StringsNotFoundException;
 import com.dicualinleon.MusicShop.repository.products.ProductDaoRepository;
 import com.dicualinleon.MusicShop.repository.products.StringsDaoRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -22,6 +23,7 @@ public class StringsService {
         this.productDaoRepository = productDaoRepository;
     }
 
+    @Transactional
     public Strings get(long id) {
         Optional<Strings> stringsOptional = stringsDaoRepository.getStrings(id);
         if(stringsOptional.isPresent()) {
