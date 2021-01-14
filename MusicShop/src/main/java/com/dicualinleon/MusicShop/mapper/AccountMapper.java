@@ -9,6 +9,7 @@ public class AccountMapper {
 
     public Account toEntity(AccountDto accountDto) {
         return Account.builder()
+                .id(accountDto.getId())
                 .username(accountDto.getUsername())
                 .password(accountDto.getPassword())
                 .email(accountDto.getEmail())
@@ -17,6 +18,7 @@ public class AccountMapper {
 
     public AccountDto toDto(Account account) {
         return AccountDto.builder()
+                .id(account.getId())
                 .username(account.getUsername())
                 .password(account.getPassword())
                 .email(account.getEmail())

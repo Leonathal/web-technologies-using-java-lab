@@ -2,6 +2,7 @@ package com.dicualinleon.MusicShop.exception.advice;
 
 import com.dicualinleon.MusicShop.exception.AccountNotCreatedException;
 import com.dicualinleon.MusicShop.exception.AccountNotFoundException;
+import com.dicualinleon.MusicShop.exception.AddressNotCreatedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -25,6 +26,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler({AccountNotCreatedException.class})
     public ResponseEntity<String> handle(AccountNotCreatedException e) {
+        return HandleResponseString(e, HttpStatus.EXPECTATION_FAILED);
+    }
+
+    @ExceptionHandler({AddressNotCreatedException.class})
+    public ResponseEntity<String> handle(AddressNotCreatedException e) {
         return HandleResponseString(e, HttpStatus.EXPECTATION_FAILED);
     }
 }

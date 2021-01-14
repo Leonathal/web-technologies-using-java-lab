@@ -10,6 +10,8 @@ import javax.validation.constraints.Size;
 @Builder
 public class AccountDto {
 
+    final private long id;
+
     @NotNull(message = "The username field is required.")
     @Size(min = 2, max = 30)
     final private String username;

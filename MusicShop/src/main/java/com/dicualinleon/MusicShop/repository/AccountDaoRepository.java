@@ -45,6 +45,7 @@ public class AccountDaoRepository {
             preparedStatement.setObject(4, account.getEmail());
             return preparedStatement;
         };
+
         GeneratedKeyHolder generatedKeyHolder = new GeneratedKeyHolder();
         int numberOfAccountsCreated = jdbcTemplate.update(preparedStatementCreator, generatedKeyHolder);
         if(numberOfAccountsCreated == 0) {

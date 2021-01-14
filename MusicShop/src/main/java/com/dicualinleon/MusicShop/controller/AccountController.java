@@ -1,9 +1,13 @@
 package com.dicualinleon.MusicShop.controller;
 
 import com.dicualinleon.MusicShop.domain.Account;
+import com.dicualinleon.MusicShop.domain.Address;
 import com.dicualinleon.MusicShop.dto.AccountDto;
+import com.dicualinleon.MusicShop.dto.AddressDto;
 import com.dicualinleon.MusicShop.mapper.AccountMapper;
+import com.dicualinleon.MusicShop.mapper.AddressMapper;
 import com.dicualinleon.MusicShop.service.AccountService;
+import com.dicualinleon.MusicShop.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,11 +22,20 @@ import java.net.URI;
 public class AccountController {
 
     private AccountService accountService;
-    private AccountMapper accountMapper;
+    private AddressService addressService;
 
-    public AccountController(AccountService accountService, AccountMapper accountMapper) {
+    private AccountMapper accountMapper;
+    private AddressMapper addressMapper;
+
+    public AccountController(
+            AccountService accountService,
+            AddressService addressService,
+            AccountMapper accountMapper,
+            AddressMapper addressMapper) {
         this.accountService = accountService;
+        this.addressService = addressService;
         this.accountMapper = accountMapper;
+        this.addressMapper = addressMapper;
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -71,5 +84,24 @@ public class AccountController {
         return ResponseEntity
                 .ok()
                 .body(accountDto);
+    }
+
+    @PostMapping(value = "/{id}/add_address")
+    public ResponseEntity<AddressDto> createAddress(
+            @Valid
+            @RequestBody AddressDto addressDto,
+            @PathVariable("id") Long accountId
+    ) {
+        Address address = addressMapper.toEntity(addressDto);
+        Address savedAddress = addressService.create(address, accountId);
+        if(savedAddress == null) {
+            return ResponseEntity
+                    .status(HttpStatus.EXPECTATION_FAILED)
+                    .build();
+        }
+        AddressDto savedAddressDto = addressMapper.toDto(savedAddress);
+        return ResponseEntity
+                .created(URI.create("/" + accountId + "/address/" + savedAddress.getId()))
+                .body(savedAddressDto);
     }
 }
