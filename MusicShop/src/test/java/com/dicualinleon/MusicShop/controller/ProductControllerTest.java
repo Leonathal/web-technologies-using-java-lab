@@ -1,7 +1,9 @@
 package com.dicualinleon.MusicShop.controller;
 
 import com.dicualinleon.MusicShop.domain.products.base.Product;
-import com.dicualinleon.MusicShop.service.OrderService;
+import com.dicualinleon.MusicShop.dto.products.ProductDto;
+import com.dicualinleon.MusicShop.mapper.products.ProductMapper;
+import com.dicualinleon.MusicShop.service.products.ProductService;
 import com.dicualinleon.MusicShop.utils.ProductTypes;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -21,21 +23,21 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(controllers = OrderController.class)
-
-public class OrderControllerTest {
+@WebMvcTest(controllers = ProductController.class)
+public class ProductControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
     @Autowired
     private ObjectMapper objectMapper;
     @MockBean
-    private OrderService orderService;
+    private ProductService productService;
+    @MockBean
+    private ProductMapper productMapper;
 
     @Test
-    public void getOrderProductsHappyFlow() throws Exception {
-        List<Product> productList = new ArrayList<>();
-        long orderId = 1;
+    public void getProductHappyFlow() throws Exception {
+        long productId = 1;
         Product product = new Product(
                 1,
                 "product",
@@ -45,27 +47,23 @@ public class OrderControllerTest {
                 ProductTypes.GUITAR,
                 100
         );
-        productList.add(product);
+        ProductDto productDto = new ProductDto(
+                1,
+                "product",
+                100,
+                "desc",
+                "producer",
+                ProductTypes.GUITAR,
+                100);
 
-        when(orderService.get(orderId))
-                .thenReturn(productList);
+        when(productService.get(productId))
+                .thenReturn(product);
+        when(productMapper.toDto(product))
+                .thenReturn(productDto);
 
-        MvcResult result = mockMvc.perform(get("/order/1"))
+        mockMvc.perform(
+                get("/product/1"))
                 .andExpect(status().isOk())
-                .andReturn();
-
-        assertThat(result.getResponse().getContentAsString()).contains("product");
-
-    }
-
-    @Test
-    public void getOrderProductsBadRequest() throws Exception {
-        long orderId = 1;
-        when(orderService.get(orderId))
-                .thenReturn(null);
-
-        MvcResult result = mockMvc.perform(get("/order/1"))
-                .andExpect(status().isBadRequest())
                 .andReturn();
     }
 }
