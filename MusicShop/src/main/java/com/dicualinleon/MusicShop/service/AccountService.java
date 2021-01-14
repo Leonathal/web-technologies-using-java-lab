@@ -2,6 +2,7 @@ package com.dicualinleon.MusicShop.service;
 
 import com.dicualinleon.MusicShop.domain.Account;
 import com.dicualinleon.MusicShop.exception.AccountNotFoundException;
+import com.dicualinleon.MusicShop.exception.DuplicateUsernameException;
 import com.dicualinleon.MusicShop.repository.AccountDaoRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,11 @@ public class AccountService {
     }
 
     public Account create(Account account) {
-        Account createdAccount = accountDaoRepository.create(account);
-        return createdAccount;
+        Optional<Account> duplicateTestAccount = accountDaoRepository.getAccount(account.getUsername());
+        if(duplicateTestAccount.isPresent()) {
+            throw new DuplicateUsernameException(account.getUsername());
+        }
+        return accountDaoRepository.create(account);
     }
 
     public Account get(long id) {

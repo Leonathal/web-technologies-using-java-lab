@@ -89,4 +89,18 @@ public class AccountDaoRepository {
             return Optional.empty();
         }
     }
+
+    public Optional<Account> getAccount(String username) {
+        String sql = "select * from account ac where ac.username = ?";
+
+        RowMapper<Account> mapper = GetAccountMapper();
+
+        List<Account> accounts = jdbcTemplate.query(sql, mapper, username);
+        if(accounts != null && !accounts.isEmpty()) {
+            return Optional.of(accounts.get(0));
+        }
+        else {
+            return Optional.empty();
+        }
+    }
 }

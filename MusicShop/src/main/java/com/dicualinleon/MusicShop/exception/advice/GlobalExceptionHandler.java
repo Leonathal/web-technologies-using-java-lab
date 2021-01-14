@@ -41,4 +41,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handle(GuitarNotFoundException e) {
         return HandleResponseString(e, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler({DuplicateUsernameException.class})
+    public ResponseEntity<String> handle(DuplicateUsernameException e) {
+        return HandleResponseString(e, HttpStatus.EXPECTATION_FAILED);
+    }
 }
