@@ -1,6 +1,7 @@
 package com.dicualinleon.MusicShop.service;
 
 import com.dicualinleon.MusicShop.domain.Account;
+import com.dicualinleon.MusicShop.exception.AccountNotFoundException;
 import com.dicualinleon.MusicShop.repository.AccountDaoRepository;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +27,7 @@ public class AccountService {
             return accountOptional.get();
         }
         else {
-            //throw new
-            return null;
+            throw new AccountNotFoundException(id);
         }
     }
 
@@ -38,8 +38,7 @@ public class AccountService {
             return accountOptional.get();
         }
         else {
-            // throw new exception
-            return null;
+            throw new AccountNotFoundException(username, password);
         }
     }
 }

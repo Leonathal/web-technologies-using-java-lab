@@ -1,6 +1,7 @@
 package com.dicualinleon.MusicShop.repository;
 
 import com.dicualinleon.MusicShop.domain.Account;
+import com.dicualinleon.MusicShop.exception.AccountNotCreatedException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
@@ -46,6 +47,9 @@ public class AccountDaoRepository {
         };
         GeneratedKeyHolder generatedKeyHolder = new GeneratedKeyHolder();
         int numberOfAccountsCreated = jdbcTemplate.update(preparedStatementCreator, generatedKeyHolder);
+        if(numberOfAccountsCreated == 0) {
+            throw new AccountNotCreatedException(account);
+        }
 
         Account createdAccount = Account.builder()
                 .id(generatedKeyHolder.getKey().longValue())
