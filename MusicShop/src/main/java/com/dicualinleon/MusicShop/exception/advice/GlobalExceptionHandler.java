@@ -1,9 +1,6 @@
 package com.dicualinleon.MusicShop.exception.advice;
 
-import com.dicualinleon.MusicShop.exception.AccountNotCreatedException;
-import com.dicualinleon.MusicShop.exception.AccountNotFoundException;
-import com.dicualinleon.MusicShop.exception.AddressNotCreatedException;
-import com.dicualinleon.MusicShop.exception.ProductNotFoundException;
+import com.dicualinleon.MusicShop.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -37,6 +34,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler({ProductNotFoundException.class})
     public ResponseEntity<String> handle(ProductNotFoundException e) {
+        return HandleResponseString(e, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({GuitarNotFoundException.class})
+    public ResponseEntity<String> handle(GuitarNotFoundException e) {
         return HandleResponseString(e, HttpStatus.NOT_FOUND);
     }
 }

@@ -8,17 +8,23 @@ public class Guitar extends Product {
 
     //region Data members
     final private GuitarTypes guitarType;
+    final private long productId;
     //endregion
 
     //region Constructor
     private Guitar(GuitarBuilder builder) {
         super(builder);
         guitarType = builder.guitarType;
+        productId = builder.productId;
     }
     //endregion
 
     public GuitarTypes guitarType() {
         return guitarType;
+    }
+
+    public long getProductId() {
+        return productId;
     }
 
     //region Builder
@@ -38,6 +44,7 @@ public class Guitar extends Product {
         extends Product.GenericProductBuilder<T> {
 
         protected GuitarTypes guitarType;
+        protected long productId;
 
         protected GenericGuitarBuilder() {
             super(ProductTypes.GUITAR);
@@ -45,6 +52,11 @@ public class Guitar extends Product {
 
         public T guitarType(GuitarTypes guitarType) {
             this.guitarType = guitarType;
+            return this.self();
+        }
+
+        public T productId(long productId) {
+            this.productId = productId;
             return this.self();
         }
     }

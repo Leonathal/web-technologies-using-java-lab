@@ -29,3 +29,22 @@ CREATE TABLE `musicshop`.`product` (
   `type` VARCHAR(100) NOT NULL,
   `quantity` INT NOT NULL,
   PRIMARY KEY (`id`));
+  
+CREATE TABLE `musicshop`.`guitar` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `productId` INT NOT NULL,
+  `guitarType` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY(`productId`) REFERENCES `musicshop`.`product`(`id`));
+  
+INSERT INTO product VALUES (null, 
+"60th Anniversary 1960 Les Paul", 
+6499,
+"This limited-edition 60th Anniversary model celebrates the iconic 1960 Les Paul Standard, which has shaped music across genres for six decades.",
+"GIBSON",
+"GUITAR",
+20);
+
+INSERT INTO guitar VALUES (null,
+1,
+"ELECTRIC");

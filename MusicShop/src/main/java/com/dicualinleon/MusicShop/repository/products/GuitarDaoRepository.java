@@ -1,41 +1,44 @@
 package com.dicualinleon.MusicShop.repository.products;
-
 import com.dicualinleon.MusicShop.domain.products.Guitar;
+import com.dicualinleon.MusicShop.utils.GuitarTypes;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
 public class GuitarDaoRepository {
 
-    private Long id = 0L;
-    private final HashMap<Long, Guitar> guitarList = new HashMap<>();
+    private JdbcTemplate jdbcTemplate;
 
-    public Guitar save(Guitar object) {
-        guitarList.put(id++, object);
-        return object;
+    public GuitarDaoRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
-    public boolean delete(Guitar object) {
-        Optional<Long> guitarKey = guitarList.keySet()
-                .stream()
-                .filter(key -> guitarList.get(key).equals(object))
-                .findAny();
-        if(guitarKey.isPresent()) {
-            guitarList.remove(guitarKey, object);
-            return true;
+    private RowMapper<Guitar> GetGuitarMapper() {
+        RowMapper<Guitar> guitarRowMapper = (resultSet, rowNum) -> {
+            return Guitar.builder()
+                    .id(resultSet.getLong("id"))
+                    .productId(resultSet.getLong("productId"))
+                    .guitarType(GuitarTypes.valueOf(resultSet.getString("guitarType")))
+                    .build();
+        };
+        return guitarRowMapper;
+    }
+
+    public Optional<Guitar> getGuitar(Long id) {
+        String sql = "SELECT * FROM guitar gu WHERE gu.id = ?";
+
+        RowMapper<Guitar> mapper = GetGuitarMapper();
+
+        List<Guitar> guitars = jdbcTemplate.query(sql, mapper, id);
+        if(guitars != null && !guitars.isEmpty()) {
+            return Optional.of(guitars.get(0));
         }
-        return false;
-    }
-
-    public Guitar getOne(Long id) {
-        return guitarList.get(id);
-    }
-
-    public List<Guitar> getAll() {
-        return new ArrayList<>(guitarList.values());
+        else {
+            return Optional.empty();
+        }
     }
 }

@@ -12,16 +12,19 @@ public class GuitarDto extends ProductDto {
 
     @NotNull
     final private GuitarTypes guitarType;
+    final private long productId;
 
     @Builder
-    public GuitarDto(int id,
+    public GuitarDto(long id,
                      String name,
                      double price,
                      String description,
                      String producer,
                      GuitarTypes guitarType,
-                     int quantity) {
+                     int quantity,
+                     long productId) {
         super(id, name, price, description, producer, ProductTypes.GUITAR, quantity);
         this.guitarType = guitarType;
+        this.productId = productId;
     }
 }
