@@ -5,19 +5,23 @@ import com.dicualinleon.MusicShop.utils.ProductTypes;
 import lombok.Builder;
 import lombok.Getter;
 
+import javax.validation.constraints.NotNull;
+
 @Getter
 public class GuitarDto extends ProductDto {
 
+    @NotNull
     final private GuitarTypes guitarType;
 
     @Builder
-    public GuitarDto(String name,
+    public GuitarDto(int id,
+                     String name,
                      double price,
                      String description,
                      String producer,
                      GuitarTypes guitarType,
                      int quantity) {
-        super(name, price, description, producer, ProductTypes.GUITAR, quantity);
+        super(id, name, price, description, producer, ProductTypes.GUITAR, quantity);
         this.guitarType = guitarType;
     }
 }

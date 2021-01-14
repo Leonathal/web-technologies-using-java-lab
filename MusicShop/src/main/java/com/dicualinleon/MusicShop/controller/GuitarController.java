@@ -1,17 +1,15 @@
 package com.dicualinleon.MusicShop.controller;
 
+import com.dicualinleon.MusicShop.controller.base.ProductControllerBase;
 import com.dicualinleon.MusicShop.domain.ShoppingCart;
-import com.dicualinleon.MusicShop.domain.products.Guitar;
 import com.dicualinleon.MusicShop.dto.products.GuitarDto;
 import com.dicualinleon.MusicShop.service.products.GuitarService;
-import com.dicualinleon.MusicShop.utils.GuitarTypes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.net.URI;
 
 @RestController
 @RequestMapping("/guitar")

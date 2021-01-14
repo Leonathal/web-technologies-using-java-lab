@@ -10,7 +10,9 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @AllArgsConstructor
-public abstract class ProductDto {
+public class ProductDto {
+
+    final private long id;
 
     @NotBlank
     final private String name;

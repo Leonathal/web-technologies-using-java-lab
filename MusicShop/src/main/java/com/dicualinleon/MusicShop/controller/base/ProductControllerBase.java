@@ -1,4 +1,4 @@
-package com.dicualinleon.MusicShop.controller;
+package com.dicualinleon.MusicShop.controller.base;
 
 import com.dicualinleon.MusicShop.domain.ShoppingCart;
 import com.dicualinleon.MusicShop.dto.products.ProductDto;

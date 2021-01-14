@@ -8,11 +8,12 @@ import lombok.Getter;
 public class StringsDto extends ProductDto {
 
     @Builder
-    public StringsDto(String name,
+    public StringsDto(int id,
+                      String name,
                       double price,
                       String description,
                       String producer,
                       int quantity) {
-        super(name, price, description, producer, ProductTypes.STRINGS, quantity);
+        super(id, name, price, description, producer, ProductTypes.STRINGS, quantity);
     }
 }

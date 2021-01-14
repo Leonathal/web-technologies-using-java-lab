@@ -1,11 +1,11 @@
 package com.dicualinleon.MusicShop.domain.products.base;
 
 import com.dicualinleon.MusicShop.utils.ProductTypes;
-
-abstract public class Product
+public class Product
     implements IProduct {
 
     //region Data Members
+    final private long id;
     final private String name;
     final private double price;
     final private String description;
@@ -15,7 +15,24 @@ abstract public class Product
     //endregion
 
     //region Constructors
+    public Product(long id,
+                   String name,
+                   double price,
+                   String description,
+                   ProductTypes productTypes,
+                   String producer,
+                   int quantity) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.productTypes = productTypes;
+        this.producer = producer;
+        this.quantity = quantity;
+    }
+
     protected Product(GenericProductBuilder builder) {
+        this.id = builder.id;
         this.productTypes = builder.productTypes;
         this.name = builder.name;
         this.price = builder.price;
@@ -26,6 +43,10 @@ abstract public class Product
     //endregion
 
     //region Getters
+    public long getId() {
+        return id;
+    }
+
     @Override
     public String getName() {
         return name;
@@ -73,6 +94,7 @@ abstract public class Product
     protected static abstract class GenericProductBuilder<T extends GenericProductBuilder<T>> {
 
         //region Data members
+        private long id;
         private String name;
         private double price;
         private String description;
@@ -90,6 +112,11 @@ abstract public class Product
         //endregion
 
         //region Setters
+        public T id(long id) {
+            this.id = id;
+            return this.self();
+        }
+
         public T name(String name) {
             this.name = name;
             return this.self();
