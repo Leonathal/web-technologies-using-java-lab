@@ -2,6 +2,7 @@ package com.dicualinleon.MusicShop.domain;
 
 import com.dicualinleon.MusicShop.dto.AccountDto;
 import com.dicualinleon.MusicShop.dto.products.ProductDto;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -29,7 +30,7 @@ public class ShoppingCart {
     }
 
     public void setCurrentUser(AccountDto accountDto) {
-        this.currentUser = currentUser;
+        this.currentUser = accountDto;
     }
 
     public AccountDto getCurrentUser() {

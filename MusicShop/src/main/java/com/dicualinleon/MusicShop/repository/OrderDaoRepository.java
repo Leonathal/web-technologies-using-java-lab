@@ -36,7 +36,7 @@ public class OrderDaoRepository {
     }
 
     public Order create(Order order) {
-        String sql = "INSERT INTO order VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO `order` VALUES(?, ?, ?, ?)";
         PreparedStatementCreator preparedStatementCreator = connection -> {
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setObject(1, null);
@@ -62,7 +62,7 @@ public class OrderDaoRepository {
     }
 
     public Optional<Order> get(long id) {
-        String sql = "SELECT * FROM order or WHERE or.id = ?";
+        String sql = "SELECT * FROM `order` WHERE `order`.id = ?";
 
         RowMapper<Order> mapper = getOrderMapper();
 
