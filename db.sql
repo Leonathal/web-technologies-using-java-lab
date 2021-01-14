@@ -37,6 +37,13 @@ CREATE TABLE `musicshop`.`guitar` (
   PRIMARY KEY (`id`),
   FOREIGN KEY(`productId`) REFERENCES `musicshop`.`product`(`id`));
   
+CREATE TABLE `musicshop`.`strings` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `productId` INT NOT NULL,
+  `guitarType` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY(`productId`) REFERENCES `musicshop`.`product`(`id`));
+  
 INSERT INTO product VALUES (null, 
 "60th Anniversary 1960 Les Paul", 
 6499,

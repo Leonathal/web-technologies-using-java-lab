@@ -46,4 +46,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handle(DuplicateUsernameException e) {
         return HandleResponseString(e, HttpStatus.EXPECTATION_FAILED);
     }
+
+    @ExceptionHandler({StringsNotFoundException.class})
+    public ResponseEntity<String> handle(StringsNotFoundException e) {
+        return HandleResponseString(e, HttpStatus.NOT_FOUND);
+    }
 }
