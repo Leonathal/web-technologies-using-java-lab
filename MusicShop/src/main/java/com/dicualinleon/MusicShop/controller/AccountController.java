@@ -2,6 +2,7 @@ package com.dicualinleon.MusicShop.controller;
 
 import com.dicualinleon.MusicShop.domain.Account;
 import com.dicualinleon.MusicShop.domain.Address;
+import com.dicualinleon.MusicShop.domain.ShoppingCart;
 import com.dicualinleon.MusicShop.dto.AccountDto;
 import com.dicualinleon.MusicShop.dto.AddressDto;
 import com.dicualinleon.MusicShop.mapper.AccountMapper;
@@ -27,15 +28,19 @@ public class AccountController {
     private AccountMapper accountMapper;
     private AddressMapper addressMapper;
 
+    private ShoppingCart shoppingCart;
+
     public AccountController(
             AccountService accountService,
             AddressService addressService,
             AccountMapper accountMapper,
-            AddressMapper addressMapper) {
+            AddressMapper addressMapper,
+            ShoppingCart shoppingCart) {
         this.accountService = accountService;
         this.addressService = addressService;
         this.accountMapper = accountMapper;
         this.addressMapper = addressMapper;
+        this.shoppingCart = shoppingCart;
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -71,7 +76,7 @@ public class AccountController {
     }
 
     @GetMapping(value = "/login")
-    public ResponseEntity<AccountDto> get(
+    public ResponseEntity<AccountDto> login(
             @RequestParam(name="username") String username,
             @RequestParam(name="password") String password) {
         Account account = accountService.get(username, password);
@@ -81,6 +86,7 @@ public class AccountController {
                     .build();
         }
         AccountDto accountDto = accountMapper.toDto(account);
+        shoppingCart.setCurrentUser(accountDto);
         return ResponseEntity
                 .ok()
                 .body(accountDto);

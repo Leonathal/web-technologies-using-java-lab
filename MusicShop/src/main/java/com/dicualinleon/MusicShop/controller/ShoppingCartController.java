@@ -2,6 +2,8 @@ package com.dicualinleon.MusicShop.controller;
 
 import com.dicualinleon.MusicShop.domain.ShoppingCart;
 import com.dicualinleon.MusicShop.dto.products.ProductDto;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -17,17 +19,6 @@ public class ShoppingCartController {
 
     public ShoppingCartController(ShoppingCart shoppingCart) {
         this.shoppingCart = shoppingCart;
-    }
-
-    @PostMapping
-    public String addProduct(@RequestBody @Valid ProductDto productDto, BindingResult bindingResult, Model model) {
-        if(bindingResult.hasErrors()) {
-            return "";
-        }
-
-        shoppingCart.addProduct(productDto);
-
-        return "";
     }
 
     @GetMapping("/view")
