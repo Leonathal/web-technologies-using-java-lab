@@ -1,6 +1,7 @@
 package com.dicualinleon.MusicShop.repository.products;
 
 import com.dicualinleon.MusicShop.domain.products.base.Product;
+import com.dicualinleon.MusicShop.exception.ProductNotFoundException;
 import com.dicualinleon.MusicShop.utils.ProductTypes;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -44,6 +45,14 @@ public class ProductDaoRepository {
         }
         else {
             return Optional.empty();
+        }
+    }
+
+    public void updateProductQuantity(long id, int quantity) {
+        String sql = "UPDATE product pr SET pr.quantity = ? WHERE pr.id = ?";
+        int numberOfUpdatedProducts = jdbcTemplate.update(sql, quantity, id);
+        if(numberOfUpdatedProducts == 0) {
+            throw new ProductNotFoundException(id);
         }
     }
 }

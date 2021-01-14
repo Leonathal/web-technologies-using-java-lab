@@ -31,4 +31,8 @@ public class ShoppingCart {
     public void setCurrentUser(AccountDto accountDto) {
         this.currentUser = currentUser;
     }
+
+    public AccountDto getCurrentUser() {
+        return this.currentUser;
+    }
 }

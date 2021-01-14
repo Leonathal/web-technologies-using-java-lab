@@ -51,4 +51,19 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handle(StringsNotFoundException e) {
         return HandleResponseString(e, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler({OrderNotCreatedException.class})
+    public ResponseEntity<String> handle(OrderNotCreatedException e) {
+        return HandleResponseString(e, HttpStatus.EXPECTATION_FAILED);
+    }
+
+    @ExceptionHandler({OrderProductNotCreatedException.class})
+    public ResponseEntity<String> handle(OrderProductNotCreatedException e) {
+        return HandleResponseString(e, HttpStatus.EXPECTATION_FAILED);
+    }
+
+    @ExceptionHandler({OutOfStockException.class})
+    public ResponseEntity<String> handle(OutOfStockException e) {
+        return HandleResponseString(e, HttpStatus.EXPECTATION_FAILED);
+    }
 }
